@@ -15,35 +15,36 @@ var oldTrialSerialNumber, newTrialSerialNumber
 var newTrialSerialNumberString = ''
 
 while (match = regex.exec(xml)) {
-    oldTrialSerialNumber = match[1]
+	oldTrialSerialNumber = match[1]
 }
 
 console.log("oldTrialSerialNumber:", oldTrialSerialNumber)
 var newNumber = bigNumber(oldTrialSerialNumber).add(10)
 newTrialSerialNumber = newNumber.number.reverse()
 
-for (var k = 0; k < newTrialSerialNumber.length; k+=1){
-    newTrialSerialNumberString = newTrialSerialNumberString + newTrialSerialNumber[k]
+for (var k = 0; k < newTrialSerialNumber.length; k += 1) {
+	newTrialSerialNumberString = newTrialSerialNumberString + newTrialSerialNumber[k]
 }
 newTrialSerialNumberString = newTrialSerialNumberString.toString()
 
 console.log("newTrialSerialNumber:", newTrialSerialNumberString)
 
 templateOptions = {
-    files: [
-        config.filePath1,
-        config.filePath2
-    ],
-    from: [
-        oldTrialSerialNumber
-    ],
-    to: [
-        newTrialSerialNumberString
-    ]
+	files: [
+		config.filePath1,
+		config.filePath2
+	],
+	from: [
+		oldTrialSerialNumber
+	],
+	to: [
+		newTrialSerialNumberString
+	]
 }
 try {
-    const changes = replaceInFile.sync(templateOptions);
+	const changes = replaceInFile.sync(templateOptions)
+	console.log('changes:', changes)
 }
 catch (error) {
-    console.error('Error occurred:', error);
+	console.error('Error occurred:', error)
 }
